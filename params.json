@@ -1,0 +1,1 @@
+{"name":"面向微信公众服务平台的REST服务示例","tagline":"rest  service by maven:spring+jersey+weixin","body":"## 面向微信公众服务平台的REST服务示例 [项目主页](http://geosmart.github.io/me.demo.qa.startup/) \r\n\r\n---\r\n\r\n1. mvn package生成war包\r\n2. SAE/BAE等云平台部署\r\n3. postman等rest工具测试\r\n\r\n---\r\n ","google":"weixin","note":"Don't delete this file! It's used internally to help with page regeneration."}
