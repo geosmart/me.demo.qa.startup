@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="uadb.trext" >
+	<target name="uadb.mgmt_uadb.app">
+		<echo>after install to maven ,copy the jar to dependent project </echo>   
+		<copy todir="D:\JavaWorkSpace\uadb.app\target\uadb.app\WEB-INF\lib">
+			<fileset dir="D:\Dev\Maven-Respository\me\test\maven.jar\1.0">
+				<include name="me.test.maven.jar-1.0.jar" />
+			</fileset>
+		</copy> 
+	</target>  
+</project>
