@@ -7,7 +7,7 @@ import me.demo.qa.startup.service.IAppService;
  * 
  * @author geosmart
  */
-public class AppServiceimpl implements IAppService {
+public class AppServiceImpl implements IAppService {
 
   @Override
   public String sayHelloWord(final String userName) {

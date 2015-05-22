@@ -30,6 +30,16 @@ public class 实况天气统计表 implements Serializable {
   /** default constructor */
   public 实况天气统计表() {}
 
+
+  public 实况天气统计表(String guid, String id, String city, Timestamp ptime) {
+    super();
+    this.guid = guid;
+    this.id = id;
+    this.city = city;
+    this.ptime = ptime;
+  }
+
+
   /** minimal constructor */
   public 实况天气统计表(String guid) {
     this.guid = guid;

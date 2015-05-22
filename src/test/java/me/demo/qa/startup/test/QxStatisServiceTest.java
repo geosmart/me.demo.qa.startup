@@ -2,6 +2,7 @@ package me.demo.qa.startup.test;
 
 import java.text.ParseException;
 
+import me.demo.qa.startup.entity.实况天气统计表;
 import me.demo.qa.startup.service.IQxStatisService;
 
 import org.junit.After;
@@ -11,6 +12,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.lt.util.ConsoleUtil;
+import com.lt.util.page.Pager;
 
 /**
  * App Test
@@ -31,7 +35,8 @@ public class QxStatisServiceTest {
 
   @Test
   public void queryStatis() {
-    qxStatisService.queryStatis();
+    Pager<实况天气统计表> result = qxStatisService.queryStatis();
+    ConsoleUtil.ConsoleObject(result);
   }
 
   @Test

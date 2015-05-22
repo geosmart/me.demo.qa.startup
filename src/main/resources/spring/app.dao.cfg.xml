@@ -13,7 +13,7 @@
 	<description>气象DB-DAO配置</description>
 
 
-	<bean id="qxStatisDao" class="me.demo.qa.startup.dao.impl.QxStatisDaoimpl">
+	<bean id="qxStatisDao" class="me.demo.qa.startup.dao.impl.QxStatisDaoImpl">
 		<property name="sessionFactory" ref="qx_sessionFactory"></property>
 	</bean>
 </beans>

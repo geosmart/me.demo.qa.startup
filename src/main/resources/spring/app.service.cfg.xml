@@ -9,9 +9,17 @@
 
 	<description>service config</description>
 
-	<bean id="appService" class="me.demo.qa.startup.service.impl.AppServiceimpl"></bean>
+	<bean id="constantUtil" class="me.demo.qa.startup.util.ConstantUtil" scope="singleton" primary="true">
+		<property name="domain_weather" value="http://flash.weather.com.cn"></property>
+		<property name="weather_predict" value="/wmaps/xml/chuzhou.xml"></property>
+		<property name="weather_statis" value="/dsk/101221101.xml"></property>
+	</bean>
 
-	<bean id="qxStatisService" class="me.demo.qa.startup.service.impl.QxStatisServiceimpl">
+
+	<bean id="appService" class="me.demo.qa.startup.service.impl.AppServiceImpl"></bean>
+
+	<bean id="qxStatisService" class="me.demo.qa.startup.service.impl.QxStatisServiceImpl">
 		<property name="qxStatisDao" ref="qxStatisDao"></property>
+		<property name="constantUtil" ref="constantUtil"></property>
 	</bean>
 </beans>

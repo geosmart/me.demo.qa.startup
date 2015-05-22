@@ -10,7 +10,7 @@ import com.lt.util.hibernate.BaseHibernateDaoImpl;
  * 
  * @author geosmart
  */
-public class QxStatisDaoimpl extends BaseHibernateDaoImpl<实况天气统计表> implements IQxStatisDao {
+public class QxStatisDaoImpl extends BaseHibernateDaoImpl<实况天气统计表> implements IQxStatisDao {
 
 
 }
