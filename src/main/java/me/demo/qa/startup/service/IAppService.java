@@ -7,6 +7,5 @@ package me.demo.qa.startup.service;
  */
 public interface IAppService {
 
-	public String sayHelloWord(String userName);
-
+  public String sayHelloWord(String userName);
 }

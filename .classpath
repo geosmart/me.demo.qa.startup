@@ -12,8 +12,8 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry excluding="doc/|hibernate/|spring/|spring/etl/|spring/etl/export/|spring/etl/preprocess/|spring/etl/standard/|spring/tr/|spring_temp/|spring_temp/tr/|spring_temp/trext/|spring_temp/trext/standard/|spring_trext/|spring_trext/tr/|spring_trext/trext/|spring_trext/trext/standard/|config/" including="**/*.java" kind="src" path="src/main/resources"/>
-	<classpathentry excluding="config/" including="**/*.java" kind="src" path="src/test/resources"/>
+	<classpathentry excluding="doc/|hibernate/|spring/|spring/etl/|spring/etl/export/|spring/etl/preprocess/|spring/etl/standard/|spring/tr/|spring_temp/|spring_temp/tr/|spring_temp/trext/|spring_temp/trext/standard/|spring_trext/|spring_trext/tr/|spring_trext/trext/|spring_trext/trext/standard/|config/|html/" including="**/*.java" kind="src" path="src/main/resources"/>
+	<classpathentry excluding="config/|data/" including="**/*.java" kind="src" path="src/test/resources"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>

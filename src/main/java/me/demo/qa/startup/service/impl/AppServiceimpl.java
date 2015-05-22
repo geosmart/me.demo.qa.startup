@@ -8,11 +8,9 @@ import me.demo.qa.startup.service.IAppService;
  * @author geosmart
  */
 public class AppServiceimpl implements IAppService {
- 
-	@Override
-	public String sayHelloWord(String userName)
-	{ 
-		return userName + "：Hello World！";
-	}
 
+  @Override
+  public String sayHelloWord(final String userName) {
+    return userName + "：Hello World！";
+  }
 }

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<chuzhou dn="day">
+  <city cityX="173" cityY="188" cityname="凤阳县" centername="凤阳县" fontColor="FFFFFF" pyName="" state1="1" state2="1" stateDetailed="多云" tem1="26" tem2="14" temNow="26" windState="东风3-4级转东南风小于3级" windDir="东南风" windPower="2级" humidity="31%" time="16:20" url="101221102"/>
+  <city cityX="300" cityY="185" cityname="明光市" centername="明光市" fontColor="FFFFFF" pyName="" state1="1" state2="1" stateDetailed="多云" tem1="26" tem2="16" temNow="26" windState="东南风3-4级转小于3级" windDir="东风" windPower="3级" humidity="32%" time="16:20" url="101221103"/>
+  <city cityX="209" cityY="275" cityname="定远县" centername="定远县" fontColor="FFFFFF" pyName="" state1="0" state2="1" stateDetailed="晴转多云" tem1="25" tem2="16" temNow="25" windState="东南风3-4级转东风小于3级" windDir="东风" windPower="2级" humidity="35%" time="16:20" url="101221104"/>
+  <city cityX="369.75" cityY="311.8" cityname="滁州市" centername="滁州市" fontColor="FFFF00" pyName="" state1="0" state2="1" stateDetailed="晴转多云" tem1="25" tem2="15" temNow="25" windState="东风3-4级转东南风小于3级" windDir="东风" windPower="3级" humidity="29%" time="16:20" url="101221101"/>
+  <city cityX="359.7" cityY="377.5" cityname="全椒县" centername="全椒县" fontColor="FFFFFF" pyName="" state1="0" state2="1" stateDetailed="晴转多云" tem1="26" tem2="15" temNow="26" windState="东风3-4级转小于3级" windDir="东南风" windPower="3级" humidity="28%" time="16:20" url="101221105"/>
+  <city cityX="423" cityY="275" cityname="来安县" centername="来安县" fontColor="FFFFFF" pyName="" state1="0" state2="1" stateDetailed="晴转多云" tem1="26" tem2="16" temNow="26" windState="东南风3-4级转东风小于3级" windDir="东风" windPower="2级" humidity="29%" time="16:20" url="101221106"/>
+  <city cityX="505" cityY="159" cityname="天长市" centername="天长市" fontColor="FFFFFF" pyName="" state1="1" state2="1" stateDetailed="多云" tem1="25" tem2="15" temNow="26" windState="东南风3-4级" windDir="东南风" windPower="2级" humidity="30%" time="16:20" url="101221107"/>
+</chuzhou>

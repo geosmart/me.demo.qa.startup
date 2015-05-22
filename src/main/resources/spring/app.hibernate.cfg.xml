@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+         http://www.springframework.org/schema/tx
+         http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+         http://www.springframework.org/schema/aop
+         http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<description>气象DB配置</description>
+
+	<bean id="qx_dataSource" parent="parent_dataSource">
+		<property name="username" value="qxdb"></property>
+		<property name="password" value="qxdb"></property>
+	</bean>
+
+	<bean name="qx_sessionFilter"
+		class="org.springframework.orm.hibernate4.support.OpenSessionInViewInterceptor">
+		<property name="sessionFactory" ref="qx_sessionFactory" /> 
+	</bean>  
+	
+	<bean id="qx_sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="qx_dataSource" />
+		<property name="configLocations">
+			<list>
+				<value>classpath*:hibernate/hibernate.cfg.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.default_schema">qxdb</prop>
+			</props>
+		</property> 
+		<property name="mappingLocations">
+			<list> 
+				<value>classpath*:me/demo/qa/startup/entity/hbm/实况天气统计表.hbm.xml</value> 
+			</list>
+		</property> 
+	</bean>
+
+	<bean id="qx_transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="qx_sessionFactory" />
+	</bean>
+
+	<tx:advice id="qx_txAdvice" transaction-manager="qx_transactionManager">
+		<tx:attributes>
+			<!-- 让所有的方法都加入事务管理，为了提高效率，可以把一些查询之类的方法设置为只读的事务 -->
+			<tx:method name="*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="select*" read-only="true" />
+			<!-- 以下方法都是可能设计修改的方法，就无法设置为只读 -->
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="clear*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+	<aop:config>
+		<aop:pointcut id="qx_methods"
+			expression="execution(* me.demo.qa.startup.service.*.*(..))" />
+		<aop:advisor advice-ref="qx_txAdvice" pointcut-ref="qx_methods" />
+	</aop:config>
+</beans>

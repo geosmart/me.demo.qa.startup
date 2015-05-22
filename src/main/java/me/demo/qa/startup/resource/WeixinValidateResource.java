@@ -8,10 +8,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import me.demo.qa.startup.service.IAppService;
-import me.demo.qa.startup.util.SpringContextUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.lt.util.SpringContextUtil;
 
 /***
  * 公共查询-rest
@@ -19,24 +20,22 @@ import org.slf4j.LoggerFactory;
  * @author geosmart
  */
 @Path("/rest")
-public class WeixinValidateResource
-{
-	private static Logger log = LoggerFactory.getLogger(WeixinValidateResource.class);
+public class WeixinValidateResource {
+  private static Logger log = LoggerFactory.getLogger(WeixinValidateResource.class);
 
-	IAppService appService = SpringContextUtil.getBean("appService");
+  IAppService appService = SpringContextUtil.getBean("appService");
 
 
-	/**
-	 * 微信公众服务validate
-	 * 
-	 * @return
-	 */
-	@Path("/v100/weixin/validate")
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response validate(@QueryParam("signature") String userName, @QueryParam("timestamp") String timestamp, @QueryParam("nonce") String nonce,
-			@QueryParam("echostr") String echostr)
-	{
-		return Response.ok().entity(echostr).build();
-	}
+  /**
+   * 微信公众服务validate
+   * 
+   * @return
+   */
+  @Path("/v100/weixin/validate")
+  @GET
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response validate(@QueryParam("signature") String userName, @QueryParam("timestamp") String timestamp, @QueryParam("nonce") String nonce,
+      @QueryParam("echostr") String echostr) {
+    return Response.ok().entity(echostr).build();
+  }
 }

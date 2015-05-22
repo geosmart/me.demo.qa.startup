@@ -5,4 +5,5 @@
   <installed facet="jst.utility" version="1.0"/>
   <installed facet="maven" version="1.0"/>
   <installed facet="wst.jsdt.web" version="1.0"/>
+  <installed facet="me.hibernate" version="4.1"/>
 </faceted-project>
