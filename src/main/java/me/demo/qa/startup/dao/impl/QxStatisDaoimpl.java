@@ -6,7 +6,7 @@ import me.demo.qa.startup.entity.实况天气统计表;
 import com.lt.util.hibernate.BaseHibernateDaoImpl;
 
 /**
- * TODO JavaDoc
+ * DAO-实况天气统计表
  * 
  * @author geosmart
  */

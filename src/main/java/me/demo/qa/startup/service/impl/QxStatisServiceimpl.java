@@ -30,7 +30,7 @@ import com.lt.util.DateUtil;
 import com.lt.util.page.Pager;
 
 /**
- * TODO JavaDoc
+ * Service-气象统计
  * 
  * @author geosmart
  */
