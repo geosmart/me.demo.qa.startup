@@ -34,13 +34,13 @@ public class QxStatisServiceTest {
   }
 
   @Test
-  public void queryStatis() {
+  public void queryStatisTest() {
     Pager<实况天气统计表> result = qxStatisService.queryStatis();
     ConsoleUtil.ConsoleObject(result);
   }
 
   @Test
-  public void saveStatis() throws ParseException {
+  public void saveStatisTest() throws ParseException {
     qxStatisService.saveStatis();
   }
 

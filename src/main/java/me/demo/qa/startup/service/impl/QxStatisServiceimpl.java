@@ -2,6 +2,8 @@ package me.demo.qa.startup.service.impl;
 
 import java.io.StringReader;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -42,31 +44,6 @@ public class QxStatisServiceImpl implements IQxStatisService {
   IQxStatisDao qxStatisDao;
   ConstantUtil constantUtil;
 
-  /**
-   * 将xml字符串通过jaxb转换为java bean
-   * 
-   * @param dataStr
-   */
-  public Sktq getStatisData() {
-    Sktq sktq = null;
-    try {
-      Client client = ClientBuilder.newClient();
-      WebTarget target = client.target(constantUtil.getWeather_statis());
-
-      String dataStr = target.request(MediaType.APPLICATION_XML).get(String.class);
-      log.debug(dataStr);
-      if (StringUtils.isNotEmpty(dataStr)) {
-        // 读取xml，转换成jaxb实体，转换成json实体
-        JAXBContext ctx = JAXBContext.newInstance(Sktq.class);
-        Unmarshaller um = ctx.createUnmarshaller();
-        sktq = (Sktq) um.unmarshal(new StringReader(dataStr));
-      }
-    } catch (JAXBException e) {
-      e.printStackTrace();
-    }
-    return sktq;
-  }
-
   @Override
   public Pager<实况天气统计表> queryStatis() {
     Pager<实况天气统计表> result = null;
@@ -82,19 +59,75 @@ public class QxStatisServiceImpl implements IQxStatisService {
   @Override
   public void saveStatis() {
     try {
+      // 获取实时数据
       Sktq sktq = getStatisData();
-      Date date = DateUtils.parseDate(sktq.getPtime(), DateUtil.DATETIME_PATTERN);
-      Timestamp timestamp = new Timestamp(date.getTime());
+      Timestamp timestamp = handleSktqDateTime(sktq);
+      // 删除过期数据
+      deleteStatisOutOfDate(timestamp.getTime());
+
       String city = sktq.getCity();
       String id = sktq.getId();
+
+      // 第一行数据无效
+      sktq.getQw().remove(0);
       for (Qw qw : sktq.getQw()) {
         实况天气统计表 bean = new 实况天气统计表(UUID.randomUUID().toString(), id, city, timestamp);
         BeanUtils.copyProperties(bean, qw);
-        qxStatisDao.save(bean);
+        qxStatisDao.saveOrUpdate(bean);
       }
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  @Override
+  public void deleteStatisOutOfDate(long time) {
+    String hql = "delete from 实况天气统计表 where ptime >  " + time;
+    qxStatisDao.updateByHql(hql);
+  }
+
+  @Override
+  public Sktq getStatisData() {
+    Sktq sktq = null;
+    try {
+      Client client = ClientBuilder.newClient();
+      WebTarget target = client.target(constantUtil.getWeather_statis());
+
+      String dataStr = target.request(MediaType.APPLICATION_XML).get(String.class);
+      log.debug(dataStr);
+      if (StringUtils.isNotEmpty(dataStr)) {
+        // 将xml字符串通过jaxb转换为java pojo
+        JAXBContext ctx = JAXBContext.newInstance(Sktq.class);
+        Unmarshaller um = ctx.createUnmarshaller();
+        sktq = (Sktq) um.unmarshal(new StringReader(dataStr));
+      }
+    } catch (JAXBException e) {
+      e.printStackTrace();
+    }
+    return sktq;
+  }
+
+  /**
+   * 实况天气-时间处理
+   * 
+   * @see 原始格式"15-05-24 19:00"
+   * @see 目标格式"2015-05-24 19:00:00"
+   * @param sktq
+   * @return Timestamp
+   */
+  private Timestamp handleSktqDateTime(Sktq sktq) {
+    Timestamp timestamp = null;
+    try {
+      String[] dateArray = sktq.getPtime().split("-");
+      dateArray[0] = new Integer(Calendar.getInstance().get(Calendar.YEAR)).toString();
+      String dateStr = StringUtils.join(dateArray, "-") + ":00";
+      Date date;
+      date = DateUtils.parseDate(dateStr, DateUtil.DATETIME_PATTERN);
+      timestamp = new Timestamp(date.getTime());
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+    return timestamp;
   }
 
   public IQxStatisDao getQxStatisDao() {
