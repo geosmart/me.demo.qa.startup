@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
 import com.lt.util.SpringContextUtil;
 
 /***
- * 公共查询-rest
+ * Resource-测试
  * 
  * @author geosmart
  */

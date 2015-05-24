@@ -1,7 +1,7 @@
 package me.demo.qa.startup.service;
 
 /**
- * AppService
+ * Service-测试服务
  * 
  * @author geosmart
  */

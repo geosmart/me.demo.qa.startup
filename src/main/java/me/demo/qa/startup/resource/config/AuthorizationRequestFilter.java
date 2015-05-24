@@ -9,7 +9,7 @@ import javax.ws.rs.ext.Provider;
 import me.demo.qa.startup.resource.entity.ResponseMessage;
 
 /**
- * request过滤器
+ * Jersey-Request过滤器
  */
 @Provider
 public class AuthorizationRequestFilter implements ContainerRequestFilter {

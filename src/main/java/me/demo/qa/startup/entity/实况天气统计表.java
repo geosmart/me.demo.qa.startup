@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- * 实况天气统计表
+ * Entity-实况天气统计表
  * 
  * @author MyEclipse Persistence Tools
  */

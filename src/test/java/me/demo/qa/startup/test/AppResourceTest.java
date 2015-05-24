@@ -24,7 +24,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.lt.util.ConsoleUtil;
 
 /**
- * App Test
+ * Resource-Test
  * 
  * @author geosmart
  */

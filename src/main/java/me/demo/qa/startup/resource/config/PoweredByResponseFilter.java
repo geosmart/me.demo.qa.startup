@@ -8,14 +8,12 @@ import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.ext.Provider;
 
 /**
- * response过滤器
+ * Jersey-Response过滤器
  */
 @Provider
-public class PoweredByResponseFilter implements ContainerResponseFilter
-{
-	@Override
-	public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException
-	{
-		responseContext.getHeaders().add("X-Powered-By", "(-: geosmart :-)");
-	}
+public class PoweredByResponseFilter implements ContainerResponseFilter {
+  @Override
+  public void filter(ContainerRequestContext requestContext, ContainerResponseContext responseContext) throws IOException {
+    responseContext.getHeaders().add("X-Powered-By", "(-: geosmart :-)");
+  }
 }

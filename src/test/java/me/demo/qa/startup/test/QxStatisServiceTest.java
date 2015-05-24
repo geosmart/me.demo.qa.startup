@@ -17,7 +17,7 @@ import com.lt.util.ConsoleUtil;
 import com.lt.util.page.Pager;
 
 /**
- * App Test
+ * Service-气象统计服务Test
  * 
  * @author geosmart
  */

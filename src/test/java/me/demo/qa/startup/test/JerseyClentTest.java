@@ -22,7 +22,7 @@ import org.junit.Test;
 import com.lt.util.ConsoleUtil;
 
 /**
- * JerseyClent调用rest服务测试
+ * JerseyClent调用rest服务Test
  * 
  * @sample http://www.tutorialspoint.com/restful/restful_quick_guide.htm
  * @author geosmart

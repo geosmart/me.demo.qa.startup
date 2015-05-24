@@ -11,30 +11,30 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * App Test
+ * Service-Test
  * 
  * @author geosmart
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:applicationContext.xml" })
+@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class AppServiceTest {
 
-	@Autowired
-	IAppService appService;
+  @Autowired
+  IAppService appService;
 
-	@Before
-	public void startup() {
-		System.out.println("---startup");
-	}
+  @Before
+  public void startup() {
+    System.out.println("---startup");
+  }
 
-	@Test
-	public void sayHelloWord() {
-		String result =appService.sayHelloWord("geosmart");
-		System.out.println(result);
-	}
+  @Test
+  public void sayHelloWord() {
+    String result = appService.sayHelloWord("geosmart");
+    System.out.println(result);
+  }
 
-	@After
-	public void teardown() {
-		System.out.println("---teardown");
-	}
+  @After
+  public void teardown() {
+    System.out.println("---teardown");
+  }
 }

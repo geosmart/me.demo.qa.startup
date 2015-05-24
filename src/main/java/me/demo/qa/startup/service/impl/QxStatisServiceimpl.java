@@ -30,7 +30,7 @@ import com.lt.util.DateUtil;
 import com.lt.util.page.Pager;
 
 /**
- * Service-气象统计
+ * Service-气象统计服务
  * 
  * @author geosmart
  */
