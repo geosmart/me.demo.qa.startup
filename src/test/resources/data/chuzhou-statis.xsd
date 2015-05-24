@@ -6,16 +6,16 @@
         <xs:element maxOccurs="unbounded" ref="qw"/>
       </xs:sequence>
       <xs:attribute name="city" use="required" type="xs:NCName"/>
-      <xs:attribute name="id" use="required" />
-      <xs:attribute name="ptime" use="required"/>
+      <xs:attribute name="id" use="required" type="xs:string"/>
+      <xs:attribute name="ptime" use="required" type="xs:string"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="qw">
     <xs:complexType>
       <xs:attribute name="fl" use="required"/>
       <xs:attribute name="fx" use="required"/>
-      <xs:attribute name="h" use="required"/>
-      <xs:attribute name="js" use="required" />
+      <xs:attribute name="h" use="required" type="xs:integer"/>
+      <xs:attribute name="js" use="required" type="xs:integer"/>
       <xs:attribute name="sd" use="required"/>
       <xs:attribute name="wd" use="required"/>
     </xs:complexType>
