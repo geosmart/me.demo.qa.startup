@@ -5,24 +5,23 @@
   http://www.springframework.org/schema/beans/spring-beans.xsd
   http://www.springframework.org/schema/context
   http://www.springframework.org/schema/context/spring-context.xsd">
-	<description>Spring 集成</description>
 
-	<context:annotation-config />
 
+	<description>Spring integration</description>
+
+	<context:annotation-config /> 
+	
 	<!-- 获取Spring上下文 -->
-	<bean id="springContextUtil" class="com.lt.util.SpringContextUtil"
-		scope="singleton"></bean>
+	<bean id="springContextUtil" class="com.lt.util.SpringContextUtil"  scope="singleton"></bean> 
+	 
+	
+	<import resource="spring/app.db.cfg.xml"/> 
+	
+	<import resource="spring/app.hibernate.cfg.xml"/>
+	 
+	<import resource="spring/app.dao.cfg.xml"/> 
 
-	<!-- 本地-数据源 -->
-	<!-- <import resource="spring/db/app.db.localhost.cfg.xml"/> -->
-	<!-- lt-数据源 -->
-	<import resource="spring/db/app.db.lt.cfg.xml" />
-
-	<import resource="spring/app.hibernate.cfg.xml" />
-
-	<import resource="spring/app.dao.cfg.xml" />
-
-	<import resource="spring/app.service.cfg.xml" />
-
-	<import resource="spring/app.resource.cfg.xml" />
+	<import resource="spring/app.service.cfg.xml"/> 
+	
+	<import resource="spring/app.resource.cfg.xml"/> 
 </beans>
