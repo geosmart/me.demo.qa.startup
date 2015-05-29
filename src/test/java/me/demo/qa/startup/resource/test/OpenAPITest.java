@@ -1,4 +1,4 @@
-package me.demo.qa.startup.test;
+package me.demo.qa.startup.resource.test;
 
 import java.io.StringReader;
 
@@ -27,7 +27,7 @@ import com.lt.util.ConsoleUtil;
  * @sample http://www.tutorialspoint.com/restful/restful_quick_guide.htm
  * @author geosmart
  */
-public class JerseyClentTest {
+public class OpenAPITest {
   // 天中国气网开放接口-根域名
   private static final String domain_weather = "http://flash.weather.com.cn";
   // 获取实时天气和城镇代码

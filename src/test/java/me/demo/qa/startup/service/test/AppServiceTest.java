@@ -1,4 +1,4 @@
-package me.demo.qa.startup.test;
+package me.demo.qa.startup.service.test;
 
 import me.demo.qa.startup.service.IAppService;
 
