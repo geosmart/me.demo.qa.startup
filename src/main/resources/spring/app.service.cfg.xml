@@ -22,4 +22,10 @@
 		<property name="qxStatisDao" ref="qxStatisDao"></property>
 		<property name="constantUtil" ref="constantUtil"></property>
 	</bean>
+	
+	<bean id="skWeatherService" class="me.demo.qa.startup.service.impl.SkWeatherServiceImpl">
+		<property name="skWeatherDao" ref="skWeatherDao"></property>
+		<property name="constantUtil" ref="constantUtil"></property>
+	</bean>
+	
 </beans>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="chuzhou">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="city"/>
+      </xs:sequence>
+      <xs:attribute name="dn" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="city">
+    <xs:complexType>
+      <xs:attribute name="centername" use="required" type="xs:NCName"/>
+      <xs:attribute name="cityX" use="required" type="xs:decimal"/>
+      <xs:attribute name="cityY" use="required" type="xs:decimal"/>
+      <xs:attribute name="cityname" use="required" type="xs:NCName"/>
+      <xs:attribute name="fontColor" use="required" type="xs:NCName"/>
+      <xs:attribute name="humidity" use="required"/>
+      <xs:attribute name="pyName" use="required"/>
+      <xs:attribute name="state1" use="required" type="xs:integer"/>
+      <xs:attribute name="state2" use="required" type="xs:integer"/>
+      <xs:attribute name="stateDetailed" use="required" type="xs:NCName"/>
+      <xs:attribute name="tem1" use="required" type="xs:integer"/>
+      <xs:attribute name="tem2" use="required" type="xs:integer"/>
+      <xs:attribute name="temNow" use="required" type="xs:integer"/>
+      <xs:attribute name="time" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="url" use="required" type="xs:integer"/>
+      <xs:attribute name="windDir" use="required" type="xs:NCName"/>
+      <xs:attribute name="windPower" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="windState" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

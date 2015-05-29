@@ -8,7 +8,9 @@
 
 package me.demo.qa.startup.entity.xsd.weather;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -53,7 +55,7 @@ public class Qw {
     @XmlAttribute(name = "h", required = true)
     protected BigInteger h;
     @XmlAttribute(name = "js", required = true)
-    protected BigInteger js;
+  protected BigDecimal js;
     @XmlAttribute(name = "sd", required = true)
     @XmlSchemaType(name = "anySimpleType")
     protected String sd;
@@ -134,26 +136,22 @@ public class Qw {
     }
 
     /**
-     * Gets the value of the js property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link BigInteger }
-     *     
-     */
-    public BigInteger getJs() {
+   * Gets the value of the js property.
+   * 
+   * @return possible object is {@link BigDecimal }
+   * 
+   */
+  public BigDecimal getJs() {
         return js;
     }
 
     /**
-     * Sets the value of the js property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link BigInteger }
-     *     
-     */
-    public void setJs(BigInteger value) {
+   * Sets the value of the js property.
+   * 
+   * @param value allowed object is {@link BigDecimal }
+   * 
+   */
+  public void setJs(BigDecimal value) {
         this.js = value;
     }
 

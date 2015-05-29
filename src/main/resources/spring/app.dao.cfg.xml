@@ -16,4 +16,7 @@
 	<bean id="qxStatisDao" class="me.demo.qa.startup.dao.impl.QxStatisDaoImpl">
 		<property name="sessionFactory" ref="qx_sessionFactory"></property>
 	</bean>
+	<bean id="skWeatherDao" class="me.demo.qa.startup.dao.impl.SkWeatherDaoImpl">
+		<property name="sessionFactory" ref="qx_sessionFactory"></property>
+	</bean>
 </beans>
