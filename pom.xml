@@ -48,7 +48,7 @@
 		<!-- test -->
 		<junit.version>4.8.2</junit.version>
 		<!-- web -->
-		<servlet-api.version>2.5</servlet-api.version>
+		<servlet-api.version>3.0.1</servlet-api.version>
 		<httpclient.version>4.3.1</httpclient.version>
 		<cors-filter.version>2.1.1</cors-filter.version>
 		<!-- encode -->
@@ -58,16 +58,16 @@
 
 	<repositories>
 		<repository>
+			<id>sonatype-nexus-staging</id>
+			<name>Nexus Release Repository</name>
+			<url>http://repo1.maven.org/maven2/</url>
+		</repository>
+
+		<repository>
 			<id>Java.net release</id>
 			<name>Java.net releases Repository</name>
 			<url>https://maven.java.net/content/repositories/releases/</url>
 			<layout>default</layout>
-		</repository>
-
-		<repository>
-			<id>sonatype-nexus-staging</id>
-			<name>Nexus Release Repository</name>
-			<url>http://repo1.maven.org/maven2/</url>
 		</repository>
 
 		<repository>
@@ -229,10 +229,10 @@
 		<!-- WEB begin -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>${servlet-api.version}</version>
-			<scope>provided</scope>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
 		</dependency>
+
 		<!-- WEB end -->
 
 
@@ -325,6 +325,18 @@
 			<version>${cors-filter.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-server</artifactId>
+			<version>9.3.0.M2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<version>9.3.0.M2</version>
+		</dependency>
+
 
 		<!-- 微信Java SDK -->
 		<dependency>
@@ -365,17 +377,6 @@
 					<target>${jdk.version}</target>
 					<showWarnings>true</showWarnings>
 					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
-
-			<!-- test插件, 设置內存/ClassLoader -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.12.4</version>
-				<configuration>
-					<encoding>${project.build.sourceEncoding}</encoding>
-					<argLine>-Xmx256M</argLine>
 				</configuration>
 			</plugin>
 
@@ -429,7 +430,30 @@
 				</configuration>
 			</plugin>
 
-
+			<!-- test插件, 设置內存/ClassLoader -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12.4</version>
+				<configuration>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<argLine>-Xmx256M</argLine>
+				</configuration>
+				<executions>
+					<execution>
+						<id>run-integration-test</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<includes>
+								<include>**/*ResourceTest.java</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
@@ -467,7 +491,6 @@
 						</includes>
 					</resource>
 				</resources>
-
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>

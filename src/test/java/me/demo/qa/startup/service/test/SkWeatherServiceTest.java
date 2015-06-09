@@ -1,9 +1,9 @@
-package me.demo.qa.startup.test;
+package me.demo.qa.startup.service.test;
 
 import java.text.ParseException;
 
-import me.demo.qa.startup.entity.实况天气统计表;
-import me.demo.qa.startup.service.IQxStatisService;
+import me.demo.qa.startup.entity.实况天气表;
+import me.demo.qa.startup.service.ISkWeatherService;
 
 import org.junit.After;
 import org.junit.Before;
@@ -19,14 +19,13 @@ import com.lt.util.page.Pager;
 /**
  * Service-气象统计服务Test
  * 
- * @author geosmart
+ * @author DreamCatcher
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
-public class QxStatisServiceTest {
-
+public class SkWeatherServiceTest {
   @Autowired
-  IQxStatisService qxStatisService;
+  ISkWeatherService skWeatherService;
 
   @Before
   public void startup() {
@@ -34,17 +33,14 @@ public class QxStatisServiceTest {
   }
 
   @Test
-  public void queryStatisTest() {
-    if (qxStatisService == null) {
-      System.out.println("---startup");
-    }
-    Pager<实况天气统计表> result = qxStatisService.queryStatis();
-    ConsoleUtil.ConsoleObject(result);
+  public void saveWeatherTest() throws ParseException {
+    skWeatherService.saveWeather();
   }
 
   @Test
-  public void saveStatisTest() throws ParseException {
-    qxStatisService.saveStatis();
+  public void queryWeatherTest() {
+    Pager<实况天气表> resultPager = skWeatherService.queryWeather();
+    ConsoleUtil.ConsoleObject(resultPager);
   }
 
   @After
