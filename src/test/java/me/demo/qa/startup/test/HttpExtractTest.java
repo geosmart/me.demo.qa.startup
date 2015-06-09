@@ -1,4 +1,4 @@
-package me.demo.qa.startup.resource.test;
+package me.demo.qa.startup.test;
 
 import java.io.IOException;
 
@@ -10,8 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * 网页抽取Jsoup测试
- *  
+ * JerseyClent调用rest服务Test
+ * 
+ * @sample http://www.tutorialspoint.com/restful/restful_quick_guide.htm
  * @author geosmart
  */
 public class HttpExtractTest {
