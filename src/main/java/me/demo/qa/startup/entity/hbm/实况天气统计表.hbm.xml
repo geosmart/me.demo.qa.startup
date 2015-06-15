@@ -38,5 +38,8 @@
         <property name="sd" type="float">
             <column name="sd"  />
         </property>
+        <property name="timeOrder" type="int">
+            <column name="timeOrder"  />
+        </property>
     </class>
 </hibernate-mapping>

@@ -23,6 +23,8 @@ public class 实况天气统计表 implements Serializable {
   private float fl;
   private float js;
   private float sd;
+  // 非原始数据字段
+  private int timeOrder;
 
 
   // Constructors
@@ -125,6 +127,16 @@ public class 实况天气统计表 implements Serializable {
 
   public void setSd(float sd) {
     this.sd = sd;
+  }
+
+
+  public int getTimeOrder() {
+    return timeOrder;
+  }
+
+
+  public void setTimeOrder(int timeOrder) {
+    this.timeOrder = timeOrder;
   }
 
 

@@ -51,6 +51,7 @@ public class AppResourceTest {
     ConsoleUtil.ConsoleObject(result.getEntity());
   }
 
+
   @Test
   public void post() {
     Map<String, Object> paramMap = new HashMap<String, Object>();

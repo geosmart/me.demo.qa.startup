@@ -11,6 +11,6 @@ public class AppServiceImpl implements IAppService {
 
   @Override
   public String sayHelloWord(final String userName) {
-    return userName + "：Hello World！";
+    return userName + "：HelloWorld！";
   }
 }

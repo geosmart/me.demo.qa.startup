@@ -33,6 +33,12 @@ public class ResultWrapper implements java.io.Serializable {
 		this.result = null;
 	}
 
+  public ResultWrapper(String token, Object result) {
+    super();
+    this.token = token;
+    this.result = result;
+  }
+
 	public ResultWrapper(String token, ResponseMessage message, Pager<?> result) {
 		super();
 		this.token = token;

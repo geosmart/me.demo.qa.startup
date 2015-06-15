@@ -9,5 +9,8 @@
 	<description>resource config</description>
 
 	<bean id="appResource" class="me.demo.qa.startup.resource.AppResource"> 
-	</bean> 
+	</bean>
+	<bean id="weatherResource" class="me.demo.qa.startup.resource.WeatherResource">
+<!-- 		<property name="qxStatisService" ref="qxStatisService"></property> -->
+	</bean>
 </beans>
