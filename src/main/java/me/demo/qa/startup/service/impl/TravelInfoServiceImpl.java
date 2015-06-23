@@ -9,10 +9,12 @@ import org.jsoup.select.Elements;
 
 public class TravelInfoServiceImpl implements ITravelInfoService {
 
+  // FIXME 参考ConstantUtil静态变量配置外部化
   final String travelDomain = "http://ah.weather.com.cn";
 
   String travelRootUrl = "/ahly/index.shtml";
 
+  @Override
   public TravelInfo getTravelInfo() {
     TravelInfo travelInfo = null;
     try {

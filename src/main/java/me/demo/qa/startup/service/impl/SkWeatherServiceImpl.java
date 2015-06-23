@@ -35,7 +35,6 @@ public class SkWeatherServiceImpl implements ISkWeatherService {
     try {
       Chuzhou chuzhou = getWeatherData();
       deleteWeatherOutOfDate();
-
       for (City city : chuzhou.getCity()) {
         实况天气表 bean = new 实况天气表(UUID.randomUUID().toString());
         BeanUtils.copyProperties(bean, city);

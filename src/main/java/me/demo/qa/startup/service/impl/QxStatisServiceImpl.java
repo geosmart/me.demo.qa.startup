@@ -39,8 +39,7 @@ import com.lt.util.page.Pager;
 public class QxStatisServiceImpl implements IQxStatisService {
 
   private static Logger log = LoggerFactory.getLogger(QxStatisServiceImpl.class);
-
-
+ 
   IQxStatisDao qxStatisDao;
   ConstantUtil constantUtil;
 

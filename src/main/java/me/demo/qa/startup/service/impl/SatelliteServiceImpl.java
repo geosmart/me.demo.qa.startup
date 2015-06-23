@@ -7,7 +7,9 @@ import me.demo.qa.startup.service.ISatelliteService;
 
 public class SatelliteServiceImpl implements ISatelliteService {
 
+  @Override
   public String getSatellitePhotoUrl() {
+    // FIXME 参考ConstantUtil静态变量配置外部化
     String satelliteDomain = "http://pi.weather.com.cn/i/product/pic/l/sevp_nsmc_wxcl_asc_e99_achn_lno_py_";
     SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmm00");
     Calendar cal = Calendar.getInstance();

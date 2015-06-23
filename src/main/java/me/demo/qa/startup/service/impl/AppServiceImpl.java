@@ -3,7 +3,7 @@ package me.demo.qa.startup.service.impl;
 import me.demo.qa.startup.service.IAppService;
 
 /**
- * AppServiceImpl
+ * 测试服务
  * 
  * @author geosmart
  */

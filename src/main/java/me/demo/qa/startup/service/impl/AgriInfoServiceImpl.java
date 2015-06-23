@@ -7,10 +7,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 public class AgriInfoServiceImpl implements IAgriInfoService {
+  // FIXME 参考ConstantUtil静态变量配置外部化
   final String domain = "http://www.ahnyqx.cn/";
-
+ 
   String rootUrl = "show.asp?cid=d5da3535-36bd-4d28-9551-fb841423e359";
 
+  @Override
   public String getArigInfoUrl(int index) {
     if (index > 5)
       return "";

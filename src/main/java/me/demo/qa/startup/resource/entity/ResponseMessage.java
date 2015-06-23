@@ -29,6 +29,10 @@ public class ResponseMessage {
   @JsonIgnore
   public static UriInfo CurrentUriInfo;
 
+  public ResponseMessage() {
+    super();
+  }
+
   public ResponseMessage(String request, int statusCode, String reasonPhrase) {
     super();
     this.request = request;

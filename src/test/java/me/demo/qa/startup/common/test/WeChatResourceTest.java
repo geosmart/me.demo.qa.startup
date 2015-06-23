@@ -1,4 +1,4 @@
-package me.demo.qa.startup.resource.test;
+package me.demo.qa.startup.common.test;
 
 import java.util.UUID;
 

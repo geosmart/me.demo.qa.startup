@@ -1,4 +1,4 @@
-package me.demo.qa.startup.resource.test;
+package me.demo.qa.startup.common.test;
 
 import java.util.UUID;
 
@@ -18,9 +18,7 @@ import com.lt.util.ConsoleUtil;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
-public class WeatherResourceTest {
-
-  private static final String domain = "http://localhost:8080/qa.startup";
+public class WeatherResourceTest { 
 
   @Autowired
   WeatherResource weatherResource;

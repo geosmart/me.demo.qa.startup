@@ -1,10 +1,12 @@
 package me.demo.qa.startup.resource.test;
 
 import java.io.StringReader;
+import java.util.concurrent.ExecutionException;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
+import javax.ws.rs.client.InvocationCallback;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -40,6 +42,27 @@ public class OpenAPITest {
   @Before
   public void startup() {
     System.out.println("---JerseyClentTest startup");
+  }
+
+  @Test
+  public void get_weather_predict_async() throws InterruptedException, ExecutionException {
+    Client client = ClientBuilder.newClient();
+    WebTarget target = client.target(url_weather_predict);
+
+    target.request(MediaType.APPLICATION_XML).async().get(new InvocationCallback<Response>() {
+      @Override
+      public void completed(Response response) {
+        System.out.println("Response status code " + response.getStatus() + " received.");
+
+        String jsonStr = response.readEntity(String.class);
+        System.out.println(jsonStr);
+      }
+
+      @Override
+      public void failed(Throwable throwable) {
+        throwable.printStackTrace();
+      }
+    }).get();
   }
 
   @Test

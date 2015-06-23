@@ -13,13 +13,12 @@ import com.fasterxml.jackson.module.jaxb.JaxbAnnotationIntrospector;
 
 
 /**
- * TODO javadoc.
+ * Jersey自定义jackson序列化ObjectMapper
  * 
- * @author Jakub Podlesak (jakub.podlesak at oracle.com)
+ * @author geosmart
  */
 @Provider
 public class MyObjectMapperProvider implements ContextResolver<ObjectMapper> {
-
   final ObjectMapper defaultObjectMapper;
   final ObjectMapper combinedObjectMapper;
 
@@ -43,14 +42,14 @@ public class MyObjectMapperProvider implements ContextResolver<ObjectMapper> {
   }
 
   private static ObjectMapper createDefaultMapper() {
-    final ObjectMapper result = new ObjectMapper();
-    result.enable(SerializationFeature.INDENT_OUTPUT);
+    final ObjectMapper mapper = new ObjectMapper();
+    mapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+    mapper.enable(SerializationFeature.INDENT_OUTPUT);
 
-    return result;
+    return mapper;
   }
 
   private static AnnotationIntrospector createJaxbJacksonAnnotationIntrospector() {
-
     final AnnotationIntrospector jaxbIntrospector = new JaxbAnnotationIntrospector(TypeFactory.defaultInstance());
     final AnnotationIntrospector jacksonIntrospector = new JacksonAnnotationIntrospector();
 

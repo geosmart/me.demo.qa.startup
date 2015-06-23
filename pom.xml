@@ -112,6 +112,12 @@
 			<artifactId>jersey-container-servlet</artifactId>
 			<version>${jersey.version}</version>
 		</dependency>
+ 
+		<dependency>
+			<groupId>org.glassfish.jersey.test-framework.providers</groupId>
+			<artifactId>jersey-test-framework-provider-inmemory</artifactId>
+			<version>${jersey.version}</version>
+		</dependency>
 
 		<!-- Jackson -->
 		<dependency>
@@ -230,7 +236,7 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
+			<version>${servlet-api.version}</version> 
 		</dependency>
 
 		<!-- WEB end -->
@@ -359,8 +365,8 @@
 		<!--lt common -->
 		<dependency>
 			<groupId>com.lt</groupId>
-			<artifactId>lt.util</artifactId>
-			<version>1.0</version>
+			<artifactId>util</artifactId>
+			<version>1.2</version>
 		</dependency>
 	</dependencies>
 

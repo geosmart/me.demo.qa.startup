@@ -23,10 +23,10 @@ public class AppResourceConfig extends ResourceConfig
 	 */
 	public AppResourceConfig()
 	{
-		log.debug("---------注册业务Resource package--------");
+		log.info("---------注册Jersey-Resource package--------");
 		packages("me.demo.qa.startup.resource"); 
 		
-		log.debug("---------注册JAX-RS组件--------"); 
+		log.info("---------注册JAX-RS组件--------"); 
 		register(AuthorizationRequestFilter.class);
 		register(PoweredByResponseFilter.class);
 		register(RequestContextFilter.class);

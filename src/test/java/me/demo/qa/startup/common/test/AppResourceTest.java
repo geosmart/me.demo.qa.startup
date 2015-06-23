@@ -1,4 +1,4 @@
-package me.demo.qa.startup.resource.test;
+package me.demo.qa.startup.common.test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,9 +30,7 @@ import com.lt.util.ConsoleUtil;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
-public class AppResourceTest {
-
-  private static final String domain = "http://localhost:8080/qa.startup";
+public class AppResourceTest { 
 
   @Autowired
   AppResource appResource;
@@ -43,14 +41,12 @@ public class AppResourceTest {
   public void startup() {
     System.out.println("---startup");
   }
-
-
+ 
   @Test
   public void get() {
     Response result = appResource.get("geosmart", token);
     ConsoleUtil.ConsoleObject(result.getEntity());
   }
-
 
   @Test
   public void post() {
