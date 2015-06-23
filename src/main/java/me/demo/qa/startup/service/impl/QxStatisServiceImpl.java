@@ -47,7 +47,7 @@ public class QxStatisServiceImpl implements IQxStatisService {
   public Pager<实况天气统计表> queryStatis() {
     Pager<实况天气统计表> result = null;
     try {
-      String hql = "from 实况天气统计表 order by timeOrder";
+      String hql = "from 实况天气统计表 order by timeOrder desc";
       result = qxStatisDao.find(hql);
     } catch (Exception e) {
       e.printStackTrace();
@@ -61,6 +61,9 @@ public class QxStatisServiceImpl implements IQxStatisService {
       // 获取实时数据
       int timeOrder = 0;
       Sktq sktq = getStatisData();
+      if (sktq.checkFistLine() == false) {
+        return;
+      }
       Timestamp timestamp = handleSktqDateTime(sktq);
       // 删除过期数据
       deleteStatisOutOfDate(timestamp.getTime());
