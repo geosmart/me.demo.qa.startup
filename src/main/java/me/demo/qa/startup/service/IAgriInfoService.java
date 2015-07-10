@@ -11,5 +11,29 @@ public interface IAgriInfoService {
    * 
    * @param index
    */
-  public String getArigInfoUrl(int index);
+  public String getArigInfo(int index);
+
+  /**
+   * 获取农业旬报的标题
+   * 
+   * @param index 从0到6指定旬报下标
+   * @return
+   */
+  public String getArigInfoTitle(int index);
+
+  /**
+   * 获取农业旬报的描述
+   * 
+   * @param index 从0到6指定旬报下标
+   * @return
+   */
+  public String getArigInfoDescribtion(int index);
+  
+  /**
+   * 获取农业旬报图片
+   * 
+   * @param index
+   * @return
+   */
+  public String getArigInfoImgUrl(int index);
 }

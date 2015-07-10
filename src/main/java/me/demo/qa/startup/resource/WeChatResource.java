@@ -1,18 +1,19 @@
 package me.demo.qa.startup.resource;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import me.demo.qa.startup.service.IAppService;
+import me.chanjar.weixin.mp.bean.WxMpXmlMessage;
+import me.demo.qa.startup.service.IWxMessageService;
 import me.demo.qa.startup.util.SignUtil;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import com.lt.util.ConsoleUtil;
 import com.lt.util.SpringContextUtil;
 
 /***
@@ -22,10 +23,7 @@ import com.lt.util.SpringContextUtil;
  */
 @Path("/rest")
 public class WeChatResource {
-  private static Logger log = LoggerFactory.getLogger(WeChatResource.class);
-
-  IAppService appService = SpringContextUtil.getBean("appService");
-
+  IWxMessageService wxMessageService = SpringContextUtil.getBean("wxMessageService");
 
   /**
    * 微信公众服务-开发者身份验证
@@ -50,4 +48,24 @@ public class WeChatResource {
       return null;
     }
   }
+
+  @Path("/v100/wechat/validate")
+  @POST
+  @Consumes(MediaType.TEXT_XML)
+  @Produces(MediaType.TEXT_XML)
+  public Response MessageProcess(String message) {
+    if (message == null) {
+      return Response.ok().entity("error").build();
+    }
+    WxMpXmlMessage wxMpXmlMessage = WxMpXmlMessage.fromXml(message);
+    String echoMessageString = wxMessageService.getEchoMessageString(wxMpXmlMessage);
+    // 如果是异步消息
+    if (echoMessageString == null)
+      echoMessageString = "";
+    ConsoleUtil.ConsoleObject(echoMessageString);
+    return Response.ok().entity(echoMessageString).build();
+  }
+
+
+
 }

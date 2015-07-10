@@ -13,6 +13,11 @@
 		<property name="domain_weather" value="http://flash.weather.com.cn"></property>
 		<property name="weather_predict" value="/wmaps/xml/chuzhou.xml"></property>
 		<property name="weather_statis" value="/dsk/101221101.xml"></property>
+		<property name="domain_agriculture" value="http://www.ahnyqx.cn/"></property>
+		<property name="agri_chuzhou" value="show.asp?cid=d5da3535-36bd-4d28-9551-fb841423e359"></property>	
+		<property name="baidu_geocoderDomain" value="http://api.map.baidu.com/geocoder"></property>
+<!-- 		<property name="baiduGeocoding" value="/v2/?ak=DW2CwL3B3271CiVyw7GdBsfR&location=latitude,longitude&output=json&pois=1"></property> -->
+<!-- 		<property name="baiduGeoConvUrl" value="http://api.map.baidu.com/geoconv/v1/?coords=longitude,latitude&from=1&to=5&ak=DW2CwL3B3271CiVyw7GdBsfR"></property> -->
 	</bean>
 
 
@@ -26,6 +31,21 @@
 	<bean id="skWeatherService" class="me.demo.qa.startup.service.impl.SkWeatherServiceImpl">
 		<property name="skWeatherDao" ref="skWeatherDao"></property>
 		<property name="constantUtil" ref="constantUtil"></property>
+	</bean>
+	
+<!-- 	配置appID和secret -->
+	<bean id="wxMpInMemoryConfigStorage" class="me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage">
+		<property name="appId" value="wxbf48560a9f777ed3"></property>
+		<property name="secret" value="fc9e94a9d6f07748fdf6de69381f20d3"></property>
+		<property name="token" value="qastartup"></property>
+	</bean>
+<!-- 	配置微信公众号服务 -->
+	<bean id="wxMpService" class="me.chanjar.weixin.mp.api.WxMpServiceImpl">
+		<property name="wxMpConfigStorage" ref="wxMpInMemoryConfigStorage"></property>
+	</bean>
+	
+	<bean id="wxMessageService" class="me.demo.qa.startup.service.impl.WxMessageServiceImpl">
+		<property name="wxMpService" ref="wxMpService"></property>
 	</bean>
 	
 </beans>

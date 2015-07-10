@@ -44,8 +44,7 @@ public class HttpExtractTest {
   @Test
   public void htmlParserTest() throws IOException {
     IAgriInfoService agriIndoService = new AgriInfoServiceImpl();
-    String argriInfo = agriIndoService.getArigInfoUrl(0);
-
+    String argriInfo = agriIndoService.getArigInfo(0);
     System.out.println(argriInfo);
   }
 

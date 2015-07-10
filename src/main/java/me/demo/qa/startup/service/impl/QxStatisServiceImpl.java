@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import javax.ws.rs.client.Client;
@@ -61,9 +62,8 @@ public class QxStatisServiceImpl implements IQxStatisService {
       // 获取实时数据
       int timeOrder = 0;
       Sktq sktq = getStatisData();
-      if (sktq.checkFistLine() == false) {
-        return;
-      }
+
+      modifyEmpty(sktq);
       Timestamp timestamp = handleSktqDateTime(sktq);
       // 删除过期数据
       deleteStatisOutOfDate(timestamp.getTime());
@@ -88,6 +88,8 @@ public class QxStatisServiceImpl implements IQxStatisService {
     String hql = "delete from 实况天气统计表 where ptime >  " + time;
     qxStatisDao.updateByHql(hql);
   }
+
+
 
   @Override
   public Sktq getStatisData() {
@@ -131,6 +133,34 @@ public class QxStatisServiceImpl implements IQxStatisService {
       e.printStackTrace();
     }
     return timestamp;
+  }
+
+  /**
+   * 实况天气-修改空数据
+   * 
+   * 
+   * @return Sktq
+   */
+  private void modifyEmpty(Sktq sktq) {
+    int froElemIndex = 0;
+    int behElemIndex = 0;
+    List<Qw> qw = sktq.getQw();
+    for (int i = 0; i < qw.size(); i++) {
+      Qw temp = qw.get(i);
+      if (temp.getFl() == "" && temp.getWd() == "" && temp.getFx() == "") {
+        froElemIndex = i - 1;
+        behElemIndex = i + 1;
+        if (i == 0)
+          froElemIndex = i + 1;
+        if (i == (qw.size() - 1))
+          behElemIndex = i - 1;
+        temp.setFl((Integer.parseInt(qw.get(froElemIndex).getFl()) + Integer.parseInt(qw.get(behElemIndex).getFl())) / 2 + "");
+        temp.setWd((Integer.parseInt(qw.get(froElemIndex).getWd()) + Integer.parseInt(qw.get(behElemIndex).getWd())) / 2 + "");
+        temp.setFl((Integer.parseInt(qw.get(froElemIndex).getFl()) + Integer.parseInt(qw.get(behElemIndex).getFl())) / 2 + "");
+        temp.setFx((Integer.parseInt(qw.get(froElemIndex).getFx()) + Integer.parseInt(qw.get(behElemIndex).getFx())) / 2 + "");
+        temp.setSd((Integer.parseInt(qw.get(froElemIndex).getSd()) + Integer.parseInt(qw.get(behElemIndex).getSd())) / 2 + "");
+      }
+    }
   }
 
   public IQxStatisDao getQxStatisDao() {

@@ -84,18 +84,7 @@ public class Sktq {
      * 
      * 
      */
-  /**
-   * 检查第一行是否有数据（有时为空）
-   * 
-   * @return boolean
-   */
-  public boolean checkFistLine() {
-         boolean flHaveData = true;
-    if (qw.get(0).fl == "" && qw.get(0).sd == "") {
-      flHaveData = false;
-    }
-    return flHaveData;
-    }
+
     public List<Qw> getQw() {
         if (qw == null) {
             qw = new ArrayList<Qw>();

@@ -1,5 +1,7 @@
 package me.demo.qa.startup.resource.test;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +11,7 @@ import java.util.UUID;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import me.demo.qa.startup.resource.config.AppResourceConfig;
 import me.demo.qa.startup.resource.entity.PostData;
@@ -16,6 +19,7 @@ import me.demo.qa.startup.resource.entity.PostItem;
 import me.demo.qa.startup.resource.entity.PostParamWrapper;
 import me.demo.qa.startup.resource.entity.ResultWrapper;
 
+import org.apache.commons.io.FileUtils;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,6 +46,20 @@ public class JerseyResourceTest extends JerseyTest {
   @Override
   protected Application configure() {
     return new AppResourceConfig(); 
+  }
+
+
+  @Test
+  public void validate() throws IOException {
+    String url = "/rest/v100/wechat/validate";
+    File file = new File("F:/MyEclipse Workspaces/gitWorkspace/me.demo.qa.startup/src/main/resources/msg.xml");
+
+    String xmlString = FileUtils.readFileToString(file);
+
+    Entity<String> paramEntity = Entity.entity(xmlString, MediaType.TEXT_XML);
+    Response result = target(url).request(MediaType.TEXT_XML).post(paramEntity);
+
+    ConsoleUtil.ConsoleObject(result.getEntity());
   }
 
   @Test

@@ -81,7 +81,7 @@ public class WeatherResource {
   public Response getArgriInfo(@QueryParam("index") int index) {
     IAgriInfoService agriInfoService = new AgriInfoServiceImpl();
     // 根据下标获取农业旬报
-    String argriInfo = agriInfoService.getArigInfoUrl(index);
+    String argriInfo = agriInfoService.getArigInfo(index);
 
     return Response.ok().entity(argriInfo).build();
   }
