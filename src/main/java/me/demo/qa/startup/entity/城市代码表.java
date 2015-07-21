@@ -1,14 +1,15 @@
 package me.demo.qa.startup.entity;
 
-
-
 /**
- * 城市代码表 entity. @author MyEclipse Persistence Tools
+ * 城市代码表 entity.
+ * 
+ * @author MyEclipse Persistence Tools
  */
 
 public class 城市代码表 implements java.io.Serializable {
 
 
+  private static final long serialVersionUID = 1L;
     // Fields    
 
      private String citycode;
@@ -28,7 +29,7 @@ public class 城市代码表 implements java.io.Serializable {
         this.cityname = cityname;
     }
 
-   
+
     // Property accessors
 
     public String getCitycode() {
@@ -46,13 +47,5 @@ public class 城市代码表 implements java.io.Serializable {
     public void setCityname(String cityname) {
         this.cityname = cityname;
     }
-   
-
-
-
-
-
-
-
 
 }

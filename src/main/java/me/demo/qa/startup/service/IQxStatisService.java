@@ -15,7 +15,7 @@ public interface IQxStatisService {
   /**
    * 获取实时天气统计数据并持久化（写入前删除历史天气统计数据）
    */
-  public void saveStatis();
+  public void saveStatis(String citycode);
 
   /**
    * 查询-数据库天气统计数据
@@ -23,20 +23,20 @@ public interface IQxStatisService {
    * @see 如果MySQL数据已持久化，直接读取；否则需先调用OpenAPI读取数据写入MySQL
    * @return
    */
-  Pager<实况天气统计表> queryStatis();
+  Pager<实况天气统计表> queryStatis(String citycode);
 
   /**
    * 获取-开放平台天气统计数据
    * 
    * @param dataStr
    */
-  Sktq getStatisData();
+  Sktq getStatisData(String citycode);
 
   /**
    * 删除-历史天气统计数据
    * 
    * @param time
    */
-  void deleteStatisOutOfDate(long time);
+  void deleteStatisOutOfDate(long time, String citycode);
 
 }

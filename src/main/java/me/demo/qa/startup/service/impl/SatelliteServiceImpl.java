@@ -4,13 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import me.demo.qa.startup.service.ISatelliteService;
+import me.demo.qa.startup.util.ConstantUtil;
 
 public class SatelliteServiceImpl implements ISatelliteService {
 
+  private ConstantUtil constantUtil;
+
   @Override
   public String getSatellitePhotoUrl() {
-    // FIXME 参考ConstantUtil静态变量配置外部化
-    String satelliteDomain = "http://pi.weather.com.cn/i/product/pic/l/sevp_nsmc_wxcl_asc_e99_achn_lno_py_";
+    String satelliteDomain = constantUtil.getSatelliteDomain();
     SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmm00");
     Calendar cal = Calendar.getInstance();
     cal.set(Calendar.HOUR, cal.get(Calendar.HOUR) - 10);
@@ -18,5 +20,13 @@ public class SatelliteServiceImpl implements ISatelliteService {
     String satellitePhotoUrl = satelliteDomain + df.format(cal.getTime()) + "000.jpg";
 
     return satellitePhotoUrl;
+  }
+
+  public ConstantUtil getConstantUtil() {
+    return constantUtil;
+  }
+
+  public void setConstantUtil(ConstantUtil constantUtil) {
+    this.constantUtil = constantUtil;
   }
 }

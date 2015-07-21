@@ -33,6 +33,16 @@ public class ConstantUtil {
   // 百度坐标转换
   private String baiduGeoConvUrl;
 
+  // 卫星云图域名
+  private String satelliteDomain;
+
+  // 旅游气象网根域名
+  private String travelDomain;
+
+  // 旅游气象网域名
+  private String travelUrl;
+
+
 
   public String getDomain_weather() {
     return domain_weather;
@@ -98,6 +108,28 @@ public class ConstantUtil {
     this.baiduGeoConvUrl = baiduGeoConvUrl;
   }
 
+  public String getSatelliteDomain() {
+    return satelliteDomain;
+  }
 
+  public void setSatelliteDomain(String satelliteDomain) {
+    this.satelliteDomain = satelliteDomain;
+  }
+
+  public String getTravelUrl() {
+    return travelDomain + travelUrl;
+  }
+
+  public void setTravelUrl(String travelUrl) {
+    this.travelUrl = travelUrl;
+  }
+
+  public String getTravelDomain() {
+    return travelDomain;
+  }
+
+  public void setTravelDomain(String travelDomain) {
+    this.travelDomain = travelDomain;
+  }
 
 }

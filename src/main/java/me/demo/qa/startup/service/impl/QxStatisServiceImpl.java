@@ -45,10 +45,10 @@ public class QxStatisServiceImpl implements IQxStatisService {
   ConstantUtil constantUtil;
 
   @Override
-  public Pager<实况天气统计表> queryStatis() {
+  public Pager<实况天气统计表> queryStatis(String citycode) {
     Pager<实况天气统计表> result = null;
     try {
-      String hql = "from 实况天气统计表 order by timeOrder desc";
+      String hql = "from 实况天气统计表 where id='" + citycode + "' order by timeOrder desc";
       result = qxStatisDao.find(hql);
     } catch (Exception e) {
       e.printStackTrace();
@@ -57,16 +57,16 @@ public class QxStatisServiceImpl implements IQxStatisService {
   }
 
   @Override
-  public void saveStatis() {
+  public void saveStatis(String citycode) {
     try {
       // 获取实时数据
       int timeOrder = 0;
-      Sktq sktq = getStatisData();
+      Sktq sktq = getStatisData(citycode);
 
       modifyEmpty(sktq);
       Timestamp timestamp = handleSktqDateTime(sktq);
       // 删除过期数据
-      deleteStatisOutOfDate(timestamp.getTime());
+      deleteStatisOutOfDate(timestamp.getTime(), citycode);
 
       String city = sktq.getCity();
       String id = sktq.getId();
@@ -84,19 +84,20 @@ public class QxStatisServiceImpl implements IQxStatisService {
   }
 
   @Override
-  public void deleteStatisOutOfDate(long time) {
-    String hql = "delete from 实况天气统计表 where ptime >  " + time;
+  public void deleteStatisOutOfDate(long time, String citycode) {
+    String hql = "delete from 实况天气统计表 where ptime >  " + time + "and id='" + citycode + "'";
     qxStatisDao.updateByHql(hql);
   }
 
 
 
   @Override
-  public Sktq getStatisData() {
+  public Sktq getStatisData(String citycode) {
     Sktq sktq = null;
     try {
+      String weatherStatisUrl = constantUtil.getWeather_statis().replace("citycode", citycode);
       Client client = ClientBuilder.newClient();
-      WebTarget target = client.target(constantUtil.getWeather_statis());
+      WebTarget target = client.target(weatherStatisUrl);
 
       String dataStr = target.request(MediaType.APPLICATION_XML).get(String.class);
       log.debug(dataStr);

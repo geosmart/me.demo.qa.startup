@@ -42,6 +42,7 @@
 				<value>classpath*:me/demo/qa/startup/entity/hbm/实况天气统计表.hbm.xml</value> 
 				<value>classpath*:me/demo/qa/startup/entity/hbm/实况天气表.hbm.xml</value> 
 				<value>classpath*:me/demo/qa/startup/entity/hbm/城市代码表.hbm.xml</value> 
+				<value>classpath*:me/demo/qa/startup/entity/hbm/用户信息表.hbm.xml</value> 
 			</list>
 		</property> 
 	</bean>

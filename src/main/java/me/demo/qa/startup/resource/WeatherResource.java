@@ -14,9 +14,6 @@ import me.demo.qa.startup.service.IAgriInfoService;
 import me.demo.qa.startup.service.IQxStatisService;
 import me.demo.qa.startup.service.ISatelliteService;
 import me.demo.qa.startup.service.ITravelInfoService;
-import me.demo.qa.startup.service.impl.AgriInfoServiceImpl;
-import me.demo.qa.startup.service.impl.SatelliteServiceImpl;
-import me.demo.qa.startup.service.impl.TravelInfoServiceImpl;
 
 import com.lt.util.SpringContextUtil;
 import com.lt.util.page.Pager;
@@ -29,22 +26,26 @@ import com.lt.util.page.Pager;
 
 @Path("/rest")
 public class WeatherResource {
+
   IQxStatisService qxStatisService = SpringContextUtil.getBean("qxStatisService");
 
-  final String domain = "http://www.ahnyqx.cn/";
+  ISatelliteService satelliteService = SpringContextUtil.getBean("satelliteService");
 
-  String rootUrl = "show.asp?cid=d5da3535-36bd-4d28-9551-fb841423e359";
+  IAgriInfoService agriInfoService = SpringContextUtil.getBean("agriInfoService");
+
+  ITravelInfoService travelInfoService = SpringContextUtil.getBean("travelInfoService");
+
 
   @Path("/v100/tq/statis")
   @GET
   @Produces(MediaType.APPLICATION_JSON)
-  public Response getWeatherStatis(@QueryParam("token") String token) {
+  public Response getWeatherStatis(@QueryParam("token") String token, @QueryParam("citycode") String citycode) {
     ResultWrapper resultWrapper = new ResultWrapper(token);
     try {
       // 访问即更新数据
-      qxStatisService.saveStatis();
+      qxStatisService.saveStatis(citycode);
 
-      Pager<实况天气统计表> result = qxStatisService.queryStatis();
+      Pager<实况天气统计表> result = qxStatisService.queryStatis(citycode);
       resultWrapper.setResult(result);
       ResponseMessage message = new ResponseMessage(Response.Status.OK);
       resultWrapper.setMessage(message);
@@ -60,7 +61,7 @@ public class WeatherResource {
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public Response getSatalliteUrl(@QueryParam("token") String token) {
-    ISatelliteService satelliteService = new SatelliteServiceImpl();
+
     // 调取卫星服务接口获取最新云图的url
     ResultWrapper resultWrapper = new ResultWrapper(token, satelliteService.getSatellitePhotoUrl());
     try {
@@ -79,7 +80,6 @@ public class WeatherResource {
   @GET
   @Produces(MediaType.TEXT_HTML)
   public Response getArgriInfo(@QueryParam("index") int index) {
-    IAgriInfoService agriInfoService = new AgriInfoServiceImpl();
     // 根据下标获取农业旬报
     String argriInfo = agriInfoService.getArigInfo(index);
 
@@ -92,8 +92,6 @@ public class WeatherResource {
   public Response getTravelInfo(@QueryParam("token") String token) {
     ResultWrapper resultWrapper = new ResultWrapper(token);
     try {
-      ITravelInfoService travelInfoService = new TravelInfoServiceImpl();
-
       resultWrapper.setResult(travelInfoService.getTravelInfo());
       ResponseMessage message = new ResponseMessage(Response.Status.OK);
       resultWrapper.setMessage(message);

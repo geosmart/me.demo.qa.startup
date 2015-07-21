@@ -1,13 +1,21 @@
 package me.demo.qa.startup.service.test;
 
 import me.demo.qa.startup.service.IAgriInfoService;
-import me.demo.qa.startup.service.impl.AgriInfoServiceImpl;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class AgriInfoServiceTest {
+
+  @Autowired
+  IAgriInfoService agriInfoService;
 
   @Before
   public void startup() {
@@ -16,7 +24,6 @@ public class AgriInfoServiceTest {
 
   @Test
   public void getAgriInfo() {
-    IAgriInfoService agriInfoService = new AgriInfoServiceImpl();
     System.out.println(agriInfoService.getArigInfoTitle(3));
     System.out.println(agriInfoService.getArigInfoDescribtion(3));
     System.out.println(agriInfoService.getArigInfoImgUrl(3));

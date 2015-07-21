@@ -23,4 +23,8 @@
 	<bean id="cityCodeDao" class="me.demo.qa.startup.dao.impl.CityCodeDaoImpl">
 		<property name="sessionFactory" ref="qx_sessionFactory"></property>
 	</bean>
+	
+	<bean id="userInfoDao" class="me.demo.qa.startup.dao.impl.UserInfoDaoImpl">
+		<property name="sessionFactory" ref="qx_sessionFactory"></property>
+	</bean>
 </beans>

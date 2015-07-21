@@ -1,9 +1,8 @@
 package me.demo.qa.startup.service.test;
 
-import java.text.ParseException;
-
-import me.demo.qa.startup.entity.实况天气统计表;
-import me.demo.qa.startup.service.IQxStatisService;
+import me.chanjar.weixin.mp.bean.WxMpXmlMessage;
+import me.demo.qa.startup.entity.用户信息表;
+import me.demo.qa.startup.service.IUserInfoService;
 
 import org.junit.After;
 import org.junit.Before;
@@ -16,17 +15,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.lt.util.ConsoleUtil;
 import com.lt.util.page.Pager;
 
-/**
- * Service-气象统计服务Test
- * 
- * @author geosmart
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
-public class QxStatisServiceTest {
+public class UserInfoServiceTest {
 
   @Autowired
-  IQxStatisService qxStatisService;
+  IUserInfoService userInfoService;
 
   @Before
   public void startup() {
@@ -34,21 +28,25 @@ public class QxStatisServiceTest {
   }
 
   @Test
-  public void queryStatisTest() {
-    if (qxStatisService == null) {
-      System.out.println("---startup");
-    }
-    Pager<实况天气统计表> result = qxStatisService.queryStatis("101221102");
-    ConsoleUtil.ConsoleObject(result);
+  public void saveUserInfoTest() {
+    WxMpXmlMessage message = new WxMpXmlMessage();
+    message.setFromUserName("wrtx52g");
+    message.setLocationX(32.269679);
+    message.setLocationY(118.980544);
+
+    userInfoService.saveUserInfo(message);
   }
 
   @Test
-  public void saveStatisTest() throws ParseException {
-    qxStatisService.saveStatis("101221102");
+  public void queryUserInfoTest() {
+    Pager<用户信息表> resultPager = userInfoService.queryUserInfo("wrtx52g");
+    ConsoleUtil.ConsoleObject(resultPager);
   }
 
   @After
   public void teardown() {
     System.out.println("---teardown");
   }
+
+
 }

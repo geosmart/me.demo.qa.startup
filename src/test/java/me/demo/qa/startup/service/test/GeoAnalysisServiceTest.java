@@ -1,9 +1,7 @@
 package me.demo.qa.startup.service.test;
 
-import java.text.ParseException;
-
-import me.demo.qa.startup.entity.实况天气统计表;
-import me.demo.qa.startup.service.IQxStatisService;
+import me.demo.qa.startup.entity.城市代码表;
+import me.demo.qa.startup.service.IGeoAnalysisService;
 
 import org.junit.After;
 import org.junit.Before;
@@ -17,16 +15,17 @@ import com.lt.util.ConsoleUtil;
 import com.lt.util.page.Pager;
 
 /**
- * Service-气象统计服务Test
+ * 百度API服务测试
  * 
- * @author geosmart
+ * @author DreamCatcher
  */
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
-public class QxStatisServiceTest {
+public class GeoAnalysisServiceTest {
 
   @Autowired
-  IQxStatisService qxStatisService;
+  IGeoAnalysisService geoAnalysisService;
 
   @Before
   public void startup() {
@@ -34,17 +33,16 @@ public class QxStatisServiceTest {
   }
 
   @Test
-  public void queryStatisTest() {
-    if (qxStatisService == null) {
-      System.out.println("---startup");
-    }
-    Pager<实况天气统计表> result = qxStatisService.queryStatis("101221102");
+  public void cityCodeQuery() {
+    Pager<城市代码表> result = geoAnalysisService.queryCityCode("滁州");
     ConsoleUtil.ConsoleObject(result);
   }
 
   @Test
-  public void saveStatisTest() throws ParseException {
-    qxStatisService.saveStatis("101221102");
+  public void getCityCode() {
+    geoAnalysisService.setCoordinate(32.416006, 118.426016);
+    Pager<城市代码表> resultPager = geoAnalysisService.getCityCode();
+    ConsoleUtil.ConsoleObject(resultPager);
   }
 
   @After

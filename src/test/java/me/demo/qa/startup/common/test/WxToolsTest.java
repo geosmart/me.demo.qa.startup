@@ -146,24 +146,24 @@ public class WxToolsTest {
 
     // 设置实况菜单的二级菜单
     WxMenuButton button21 = new WxMenuButton();
-    button21.setType("view");
+    button21.setType("click");
     button21.setName("温度曲线");
-    button21.setUrl("http://dreamcatcher.tunnel.mobi/test/view/wd.html");
+    button21.setKey("B21_WDQX");
 
     WxMenuButton button22 = new WxMenuButton();
-    button22.setType("view");
+    button22.setType("click");
     button22.setName("湿度曲线");
-    button22.setUrl("http://dreamcatcher.tunnel.mobi/test/view/sd.html");
+    button22.setKey("B22_SDQX");
 
     WxMenuButton button23 = new WxMenuButton();
-    button23.setType("view");
+    button23.setType("click");
     button23.setName("风力风向");
-    button23.setUrl("http://dreamcatcher.tunnel.mobi/test/view/fl.html");
+    button23.setKey("B23_FLFX");
 
     WxMenuButton button24 = new WxMenuButton();
-    button24.setType("view");
+    button24.setType("click");
     button24.setName("降水图表");
-    button24.setUrl("http://dreamcatcher.tunnel.mobi/test/view/js.html");
+    button24.setKey("B24_JSTB");
 
     WxMenuButton button25 = new WxMenuButton();
     button25.setType("click");

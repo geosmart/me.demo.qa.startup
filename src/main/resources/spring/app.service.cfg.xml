@@ -12,22 +12,26 @@
 	<bean id="constantUtil" class="me.demo.qa.startup.util.ConstantUtil" scope="singleton" primary="true">
 		<property name="domain_weather" value="http://flash.weather.com.cn"></property>
 		<property name="weather_predict" value="/wmaps/xml/chuzhou.xml"></property>
-		<property name="weather_statis" value="/dsk/101221101.xml"></property>
+		<property name="weather_statis" value="/dsk/citycode.xml"></property>
 		<property name="domain_agriculture" value="http://www.ahnyqx.cn/"></property>
 		<property name="agri_chuzhou" value="show.asp?cid=d5da3535-36bd-4d28-9551-fb841423e359"></property>	
 		<property name="baidu_geocoderDomain" value="http://api.map.baidu.com/geocoder"></property>
-<!-- 		<property name="baiduGeocoding" value="/v2/?ak=DW2CwL3B3271CiVyw7GdBsfR&location=latitude,longitude&output=json&pois=1"></property> -->
-<!-- 		<property name="baiduGeoConvUrl" value="http://api.map.baidu.com/geoconv/v1/?coords=longitude,latitude&from=1&to=5&ak=DW2CwL3B3271CiVyw7GdBsfR"></property> -->
+		<property name="baiduGeocoding" value="/v2/?ak=DW2CwL3B3271CiVyw7GdBsfRamp;location=latitude,longitudeamp;output=xmlamp;pois=1"></property>
+		<property name="baiduGeoConvUrl" value="http://api.map.baidu.com/geoconv/v1/?coords=longitude,latitudeamp;from=3amp;to=5amp;ak=DW2CwL3B3271CiVyw7GdBsfR"></property>
+		<property name="satelliteDomain" value="http://pi.weather.com.cn/i/product/pic/l/sevp_nsmc_wxcl_asc_e99_achn_lno_py_"></property>
+		<property name="travelDomain" value="http://ah.weather.com.cn"></property>
+		<property name="travelUrl" value="/ahly/index.shtml"></property>
+		
 	</bean>
 
 
 	<bean id="appService" class="me.demo.qa.startup.service.impl.AppServiceImpl"></bean>
-
+<!-- 	实况天气统计服务 -->
 	<bean id="qxStatisService" class="me.demo.qa.startup.service.impl.QxStatisServiceImpl">
 		<property name="qxStatisDao" ref="qxStatisDao"></property>
 		<property name="constantUtil" ref="constantUtil"></property>
 	</bean>
-	
+<!-- 	实况天气服务 -->
 	<bean id="skWeatherService" class="me.demo.qa.startup.service.impl.SkWeatherServiceImpl">
 		<property name="skWeatherDao" ref="skWeatherDao"></property>
 		<property name="constantUtil" ref="constantUtil"></property>
@@ -48,4 +52,29 @@
 		<property name="wxMpService" ref="wxMpService"></property>
 	</bean>
 	
+<!-- 	地理解析服务 -->
+	<bean id="geoAnalysisService" class="me.demo.qa.startup.service.impl.GeoAnalysisServiceImpl">
+		<property name="cityCodeDao" ref="cityCodeDao"></property>
+		<property name="constantUtil" ref="constantUtil"></property>
+	</bean>
+	
+<!-- 	农业气象服务 -->
+	<bean id="agriInfoService" class="me.demo.qa.startup.service.impl.AgriInfoServiceImpl">
+		<property name="constantUtil" ref="constantUtil"></property>
+	</bean>
+	
+<!-- 	卫星云图服务 -->
+	<bean id="satelliteService" class="me.demo.qa.startup.service.impl.SatelliteServiceImpl">
+		<property name="constantUtil" ref="constantUtil"></property>
+	</bean>
+	
+<!-- 	旅游气象服务 -->
+	<bean id="travelInfoService" class="me.demo.qa.startup.service.impl.TravelInfoServiceImpl">
+		<property name="constantUtil" ref="constantUtil"></property>
+	</bean>
+	
+	<bean id="userInfoService" class="me.demo.qa.startup.service.impl.UserInfoServiceImpl">
+		<property name="userInfoDao" ref="userInfoDao"></property>
+		<property name="geoAnalysisService" ref="geoAnalysisService"></property>
+	</bean>
 </beans>

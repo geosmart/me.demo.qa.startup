@@ -32,7 +32,13 @@ public class WeatherResourceTest {
 
   @Test
   public void getWeatherTest() {
-    Response result = weatherResource.getWeatherStatis(token);
+    Response result = weatherResource.getWeatherStatis(token, "101221101");
+    ConsoleUtil.ConsoleObject(result.getEntity());
+  }
+
+  @Test
+  public void getArgriInfo() {
+    Response result = weatherResource.getTravelInfo(token);
     ConsoleUtil.ConsoleObject(result.getEntity());
   }
 

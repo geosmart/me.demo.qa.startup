@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="GeocoderSearchResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="status"/>
+        <xs:element ref="result"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="status" type="xs:integer"/>
+  <xs:element name="result">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="location"/>
+        <xs:element ref="formatted_address"/>
+        <xs:element ref="business"/>
+        <xs:element ref="addressComponent"/>
+        <xs:element ref="cityCode"/>
+        <xs:element ref="pois"/>
+        <xs:element ref="poiRegions"/>
+        <xs:element ref="sematic_description"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="location">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="lat"/>
+        <xs:element ref="lng"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="lat" type="xs:decimal"/>
+  <xs:element name="lng" type="xs:decimal"/>
+  <xs:element name="formatted_address" type="xs:NCName"/>
+  <xs:element name="business" type="xs:string"/>
+  <xs:element name="addressComponent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="streetNumber"/>
+        <xs:element ref="street"/>
+        <xs:element ref="district"/>
+        <xs:element ref="city"/>
+        <xs:element ref="province"/>
+        <xs:element ref="country"/>
+        <xs:element ref="countryCode"/>
+        <xs:element ref="direction"/>
+        <xs:element ref="distance"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="streetNumber">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="street" type="xs:NCName"/>
+  <xs:element name="district" type="xs:NCName"/>
+  <xs:element name="city" type="xs:NCName"/>
+  <xs:element name="province" type="xs:NCName"/>
+  <xs:element name="country" type="xs:NCName"/>
+  <xs:element name="countryCode">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="cityCode" type="xs:integer"/>
+  <xs:element name="pois">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="poi"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="poi">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="addr"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="direction"/>
+          <xs:element ref="distance"/>
+          <xs:element ref="name"/>
+          <xs:element ref="poiType"/>
+          <xs:element ref="point"/>
+          <xs:element ref="tel"/>
+          <xs:element ref="zip"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addr" type="xs:string"/>
+  <xs:element name="name" type="xs:string"/>
+  <xs:element name="poiType" type="xs:NCName"/>
+  <xs:element name="point">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="x"/>
+        <xs:element ref="y"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="x" type="xs:decimal"/>
+  <xs:element name="y" type="xs:decimal"/>
+  <xs:element name="tel">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="zip">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="poiRegions">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="sematic_description" type="xs:string"/>
+  <xs:element name="direction" type="xs:NCName"/>
+  <xs:element name="distance" type="xs:integer"/>
+</xs:schema>
